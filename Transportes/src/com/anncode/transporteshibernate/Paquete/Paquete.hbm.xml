@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2016 12:48:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.anncode.transporteshibernate.Paquete.Paquete" table="PAQUETE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="codigo" type="java.lang.String">
+            <column name="CODIGO" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" />
+        </property>
+        <property name="destinatario" type="java.lang.String">
+            <column name="DESTINATARIO" />
+        </property>
+        <property name="direccion_destinatario" type="java.lang.String">
+            <column name="DIRECCION_DESTINATARIO" />
+        </property>
+        <property name="id_camionero" type="int">
+            <column name="ID_CAMIONERO" />
+        </property>
+        <property name="id_provincia" type="int">
+            <column name="ID_PROVINCIA" />
+        </property>
+    </class>
+</hibernate-mapping>
