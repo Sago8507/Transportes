@@ -18,7 +18,7 @@
     	<mapping resource="com/anncode/transporteshibernate/Paquete.hbm.xml" />
     	<mapping resource="com/anncode/transporteshibernate/Provincia.hbm.xml" />
     	 -->
-    	 <mapping class="com.anncode.transporteshibernate.Camion"/>
+    	 <mapping class="com.anncode.transporteshibernate.Camion.Camion"/>
     	 
     </session-factory>
 </hibernate-configuration>
