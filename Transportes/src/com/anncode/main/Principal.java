@@ -2,6 +2,8 @@ package com.anncode.main;
 
 import java.util.List;
 
+import javax.enterprise.inject.Default;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,7 +18,6 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
-		CamionDAO camionDao = new CamionDAO();
 		Menu menu = new Menu();
 		
 		SessionFactory sessionFactory;
@@ -29,18 +30,116 @@ public class Principal {
 		
 		
 		List<Camion> camiones;
-		int idSelect;
+		int idSelect = 0;
+		int opcionDetalle = 0;
+		String opcion = null;
 		Camion camion = null;
 		
-		while (camion == null){
-			camiones = menu.muestrasCamiones(session);
-			idSelect = Utilerias.leerEntero();
-			camion = menu.muestraCamion(idSelect, session);
-			
-			if (camion == null){
-				System.out.println("No se encontro Camion por ID " + idSelect + ". Elegir uno valido.");
+		int opcionMenu = 1;// 1=muestraCamiones,2=detalleCamion 3=actualiza, 4=elimina, 5=salir
+		
+		
+		
+		salirDoWhile:
+		do{
+			switch(opcionMenu){
+				case 0:
+					opcionMenu = menu.insertaCamion();
+					break;
+				case 1:	
+					opcionMenu = menu.muestrasCamiones();
+					break;
+				case 2: 
+					opcionMenu = menu.muestraCamion();
+					break;
+				case 3:
+					opcionMenu = menu.actualizaCamion();
+					break;
+				case 4:
+					opcionMenu = menu.eliminaCamion();
+					break;
+				case 5:
+					menu.salir();
+					break salirDoWhile;
+				default:
+					System.out.println("Salir");
+					break salirDoWhile;
 			}
-		}
+				
+			
+		}while(true);
+		
+		
+		
+		
+		
+		
+		/*
+		salirDo:
+		do{
+			switch(opcionMenu){
+				case 1:	camiones = menu.muestrasCamiones(session);
+						opcion = Utilerias.leerCadena();
+						if (opcion.equalsIgnoreCase("s")){
+							opcionMenu = 5;
+						}else{
+							try{
+								idSelect = Integer.parseInt(opcion);
+								opcionMenu = 2;
+				            }catch(NumberFormatException ex){
+				            	System.out.println("*************************************************");
+				                System.out.println("Tienes que escribir solo números o 'S' para Salir");
+				                System.out.println("*************************************************");
+				                opcionMenu = 1;
+				            }
+						}
+						break;
+				case 2: 
+					camion = menu.muestraCamion(idSelect, session);
+					if (camion == null){
+						System.out.println("No se encontro Camion por ID " + idSelect + ". Elegir uno valido.");
+						opcionMenu = 1;
+						break;
+					}
+						
+					opcion = Utilerias.leerCadena();
+					if (opcion.equalsIgnoreCase("s")){
+						opcionMenu = 5;
+					}else{
+						try{
+							opcionDetalle = Integer.parseInt(opcion);
+							if(opcionDetalle == 0)
+								opcionMenu = 1;
+							else if (opcionDetalle == 1)
+								opcionMenu = 3;
+							else if (opcionDetalle == 2)
+								opcionMenu = 4;
+							else{
+								System.out.println("Opcion no Valida...");
+								opcionMenu = 2;
+							}
+						}catch(NumberFormatException ex){
+							System.out.println("*************************************************");
+				            System.out.println("Tienes que escribir solo números o 'S' para Salir");
+				            System.out.println("*************************************************");
+				            opcionMenu = 2;
+						}
+					}
+					break;
+				default:
+					System.out.println("Salir");
+					opcion = "S";
+			}
+				
+			
+			if (opcion.equalsIgnoreCase("s"))
+				break salirDo;
+			
+			
+		}while(true);
+		
+		*/
+		
+		
 			
 		System.exit(0);
 	}

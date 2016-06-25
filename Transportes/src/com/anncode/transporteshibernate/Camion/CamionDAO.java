@@ -16,6 +16,7 @@ public class CamionDAO{
 			session.beginTransaction();
 			session.save(camion);
 			session.getTransaction().commit();
+			
 		}catch(HibernateException he){
 			System.err.println("****** ERROR AL INSERTAR CAMION");
 			System.err.println("****** ID        : " + camion.getId());
